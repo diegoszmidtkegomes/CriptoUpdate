@@ -3,4 +3,20 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="base">#AAAAAA</color>
+    <color name="iron">#CCCCCC</color>
+    <color name="white">#FFFFFF</color>
+    <color name="control_highlight">#B3E5FC</color>
+
+    <!-- SwipeRefreshLayout -->
+    <color name="refresh_progress_1">#33B5E5</color>
+    <!-- azul -->
+    <color name="refresh_progress_2">#99CC00</color>
+    <!-- verde -->
+    <color name="refresh_progress_3">#CC0000</color>
+    <!-- vermelho -->
+
+    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="windowBackground">#FFFFFF</color>
+    <color name="navigationBarColor">#000000</color>
 </resources>

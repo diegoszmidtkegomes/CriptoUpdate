@@ -2,7 +2,6 @@ package ifrs.com.criptoupdate.services;
 
 import android.app.job.JobParameters;
 import android.app.job.JobService;
-import android.content.SharedPreferences;
 import android.util.Log;
 
 import ifrs.com.criptoupdate.helpers.CotacaoHelper;
@@ -17,7 +16,7 @@ public class AtualizaCotacaoService extends JobService {
     public boolean onStartJob(JobParameters jobParameters) {
         Log.e("diego", "no service");
         try {
-            new CotacaoHelper().atualizaCtc(getApplicationContext());
+            new CotacaoHelper().atualizaBtc(getApplicationContext());
         } catch (Exception ex) {
             ex.printStackTrace();
         }

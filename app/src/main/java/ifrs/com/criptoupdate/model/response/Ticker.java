@@ -1,4 +1,4 @@
-package ifrs.com.criptoupdate.model;
+package ifrs.com.criptoupdate.model.response;
 
 /**
  * Created by diego on 07/11/2017.

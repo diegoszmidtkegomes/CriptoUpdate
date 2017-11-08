@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_checklist"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/activity_config"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+
+    <ToggleButton
+        android:id="@+id/act_cot_cad_ativo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Spinner
+        android:id="@+id/act_cot_cad_moeda"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/cadastro_cotacao_btnsalvar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/colorPrimary"
+        android:text="Salvar"
+        android:textColor="@color/white" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/cadastro_cotacao_btndel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="24dp"
+            android:background="@color/colorPrimary"
+            android:text="Deletar"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

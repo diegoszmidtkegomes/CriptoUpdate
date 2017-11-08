@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">CriptoUpdate</string>
+    <string name="param_id">id</string>
+    <string name="list_cotacao_titulo">cotacao_titulo</string>
+    <string name="list_checklist_descricao">cotacao_descricao</string>
+    <item name="item_click_support" type="id" />
+
 </resources>
