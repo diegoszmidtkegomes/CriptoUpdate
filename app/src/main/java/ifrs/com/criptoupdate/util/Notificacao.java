@@ -49,8 +49,6 @@ public class Notificacao {
             builder.setSubText("Vol: " + cot.getTicker().getVol() + " | Último: " + String.format("%.2f", Double.parseDouble(cot.getTicker().getLast())));
             notificationManager.notify(92, builder.build());
         }
-
-
     }
 
     public void atualizaCotacao(Context context, Cotacao cot){
@@ -83,6 +81,4 @@ public class Notificacao {
             mNotificationManager.notify(92, builder.build());
         }
     }
-
-
 }

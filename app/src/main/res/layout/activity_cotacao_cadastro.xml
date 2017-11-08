@@ -17,16 +17,52 @@
         android:focusableInTouchMode="true"
         android:orientation="vertical">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <ToggleButton
-        android:id="@+id/act_cot_cad_ativo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginTop="15dp"
+                android:textSize="20sp"
+                android:layout_marginStart="20dp"
+                android:id="@+id/act_cot_cad_ativolabel"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Ativo" />
 
-    <Spinner
-        android:id="@+id/act_cot_cad_moeda"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+            <ToggleButton
+                android:layout_marginStart="100dp"
+                android:id="@+id/act_cot_cad_ativo"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_marginTop="15dp"
+                android:textSize="18sp"
+                android:layout_weight="1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="15dp"
+                android:text="Moeda" />
+
+            <Spinner
+                android:id="@+id/act_cot_cad_moeda"
+                android:layout_marginTop="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 />
+
+        </LinearLayout>
 
 
     <android.support.v7.widget.AppCompatButton
@@ -36,7 +72,7 @@
         android:layout_marginBottom="24dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="30dp"
         android:background="@color/colorPrimary"
         android:text="Salvar"
         android:textColor="@color/white" />

@@ -38,7 +38,6 @@ public class CotacaoHelper implements iAsyncObj {
                 Log.e("diego", "teste");
             }
         });
-
     }
 
     public void buscaLtc(final iAsyncObj delegate){
@@ -84,6 +83,14 @@ public class CotacaoHelper implements iAsyncObj {
     public void atualizaBtc(Context context){
         this.context = context;
         buscaBtc(this);
+    }
+    public void atualizaLtc(Context context){
+        this.context = context;
+        buscaLtc(this);
+    }
+    public void atualizaBch(Context context){
+        this.context = context;
+        buscaBch(this);
     }
 
     @Override

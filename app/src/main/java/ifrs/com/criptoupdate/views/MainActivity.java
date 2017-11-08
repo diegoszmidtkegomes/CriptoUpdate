@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements iAsyncObj {
     private ProgressDialog progress;
     private int contReq=0, contReqRet=0;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,13 +86,19 @@ public class MainActivity extends AppCompatActivity implements iAsyncObj {
         });
 
 
-        progress = ProgressDialog.show(this, "Login",
+
+        processarCarregamento();
+        //carregaLista();
+    }
+
+    private void processarCarregamento() {
+        progress = ProgressDialog.show(this, "Cotação",
                 "Carregando informações..", true);
         progress.setIndeterminate(true);
         progress.setCancelable(false);
         validaAtivos();
-        //carregaLista();
     }
+
 
     private void validaAtivos() {
         List<CotacaoCadastro> lista = new CotacaoRepositorio().selectTodosAtivos();
@@ -148,8 +153,7 @@ public class MainActivity extends AppCompatActivity implements iAsyncObj {
     @Override
     protected void onResume() {
         super.onResume();
-        carregaLista();
+        if(contReq == 0)
+            processarCarregamento();
     }
-
-
 }

@@ -4,7 +4,12 @@ import android.app.job.JobParameters;
 import android.app.job.JobService;
 import android.util.Log;
 
+import java.util.List;
+
+import ifrs.com.criptoupdate.data.CotacaoRepositorio;
 import ifrs.com.criptoupdate.helpers.CotacaoHelper;
+import ifrs.com.criptoupdate.model.CotacaoCadastro;
+import ifrs.com.criptoupdate.model.Moeda;
 
 
 /**
@@ -16,12 +21,29 @@ public class AtualizaCotacaoService extends JobService {
     public boolean onStartJob(JobParameters jobParameters) {
         Log.e("diego", "no service");
         try {
-            new CotacaoHelper().atualizaBtc(getApplicationContext());
+            atualizaMoedas();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
 
         return false;
+
+    }
+
+    private void atualizaMoedas() {
+        List<CotacaoCadastro> lista = new CotacaoRepositorio().selectTodosAtivos();
+        for (CotacaoCadastro cot: lista
+                ) {
+            if(cot.getMoedaEnum().equals(Moeda.BITCOIN)){
+                new CotacaoHelper().atualizaBtc(getApplicationContext());
+            }
+            if(cot.getMoedaEnum().equals(Moeda.BCASH)){
+                new CotacaoHelper().atualizaBch(this);
+            }
+            if(cot.getMoedaEnum().equals(Moeda.LITECOIN)){
+                new CotacaoHelper().atualizaLtc(this);
+            }
+        }
 
     }
 

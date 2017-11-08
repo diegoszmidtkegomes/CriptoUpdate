@@ -3,6 +3,7 @@ package ifrs.com.criptoupdate.views;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -28,6 +29,9 @@ public class CotacaoCadastroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cotacao_cadastro);
         buscaParametrosIntent();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         view = this;
 
         btnAtivo = (ToggleButton) findViewById(R.id.act_cot_cad_ativo); // initiate a toggle button

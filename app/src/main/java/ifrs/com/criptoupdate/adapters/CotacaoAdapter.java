@@ -73,7 +73,7 @@ public class CotacaoAdapter extends RecyclerView.Adapter<CotacaoAdapter.ViewHold
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         holder.tvTitulo.setText(_avaliacoes.get(position).getMoedaEnum().toString());
-        holder.tvDescricao.setText(String.valueOf(_avaliacoes.get(position).getValorVenda() + " - " +  String.valueOf(_avaliacoes.get(position).isAtivo())));
+        holder.tvDescricao.setText(String.valueOf(_avaliacoes.get(position).getValorVenda()));
         if(_avaliacoes.get(position).getMoedaEnum().equals(Moeda.BITCOIN)){
             holder.tvImagem.setImageDrawable(view.getResources().getDrawable(R.drawable.bitcoin_icon));
         }
