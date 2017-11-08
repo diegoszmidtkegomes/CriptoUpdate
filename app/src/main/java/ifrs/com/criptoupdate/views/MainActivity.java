@@ -2,13 +2,14 @@ package ifrs.com.criptoupdate.views;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +21,9 @@ import ifrs.com.criptoupdate.helpers.CotacaoHelper;
 import ifrs.com.criptoupdate.helpers.MainActivityHelper;
 import ifrs.com.criptoupdate.model.CotacaoCadastro;
 import ifrs.com.criptoupdate.model.Moeda;
-import ifrs.com.criptoupdate.model.response.Cotacao;
 import ifrs.com.criptoupdate.model.interfaces.iAsyncObj;
+import ifrs.com.criptoupdate.model.response.Cotacao;
+import ifrs.com.criptoupdate.util.ConexaoInternet;
 import ifrs.com.criptoupdate.util.Notificacao;
 import ifrs.com.criptoupdate.views.RecyclerView.ItemClickSupport;
 
@@ -92,11 +94,18 @@ public class MainActivity extends AppCompatActivity implements iAsyncObj {
     }
 
     private void processarCarregamento() {
-        progress = ProgressDialog.show(this, "Cotação",
-                "Carregando informações..", true);
-        progress.setIndeterminate(true);
-        progress.setCancelable(false);
-        validaAtivos();
+
+        ConexaoInternet cd = new ConexaoInternet(this);
+
+        if (cd.possuiConexao()) {
+            progress = ProgressDialog.show(this, "Cotação",
+                    "Carregando informações..", true);
+            progress.setIndeterminate(true);
+            progress.setCancelable(false);
+            validaAtivos();
+        } else {
+            Toast.makeText(this, "Sem conexão com a internet", Toast.LENGTH_SHORT).show();
+        }
     }
 
 

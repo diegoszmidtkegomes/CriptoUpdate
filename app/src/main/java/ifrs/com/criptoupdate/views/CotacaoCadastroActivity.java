@@ -1,13 +1,14 @@
 package ifrs.com.criptoupdate.views;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import ifrs.com.criptoupdate.R;
@@ -40,7 +41,21 @@ public class CotacaoCadastroActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.moedas, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(CotacaoCadastroActivity.this, parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         spinner.setAdapter(adapter);
+
 
         if(cotacaoCadastro!=null){
             btnAtivo.setChecked(cotacaoCadastro.isAtivo());
@@ -49,8 +64,6 @@ public class CotacaoCadastroActivity extends AppCompatActivity {
         else{
             btnAtivo.setChecked(true);
         }
-
-
         _btnSalvar = (Button) findViewById(R.id.cadastro_cotacao_btnsalvar);
         _btnDel = (Button) findViewById(R.id.cadastro_cotacao_btndel);
 
@@ -71,6 +84,8 @@ public class CotacaoCadastroActivity extends AppCompatActivity {
                 view.finish();
             }
         });
+
+
     }
 
     private void buscaParametrosIntent() {
