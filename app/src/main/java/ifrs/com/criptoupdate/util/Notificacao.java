@@ -58,6 +58,7 @@ public class Notificacao {
         Intent intent = new Intent(context , MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
         builder.setContentIntent(pendingIntent);
+        builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_arrow_up_black));
 
         if(cot.getMoeda().equals(Moeda.BITCOIN)){
             builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher));
