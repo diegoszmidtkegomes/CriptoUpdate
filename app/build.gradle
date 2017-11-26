@@ -9,14 +9,18 @@ buildscript {
 }
 
 apply plugin: 'com.android.application'
-apply plugin: 'realm-android'
-apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'io.fabric'
 
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
+apply plugin: 'realm-android'
 
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "ifrs.com.criptoupdate"
         minSdkVersion 21
@@ -51,5 +55,8 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
     compile 'com.jakewharton:butterknife:8.1.0'
     testCompile 'junit:junit:4.12'
-    apt 'com.jakewharton:butterknife-compiler:8.0.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.0.1'
+    compile('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
+        transitive = true
+    }
 }

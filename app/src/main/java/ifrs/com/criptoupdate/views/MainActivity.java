@@ -4,10 +4,12 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
@@ -27,7 +29,7 @@ import ifrs.com.criptoupdate.util.ConexaoInternet;
 import ifrs.com.criptoupdate.util.Notificacao;
 import ifrs.com.criptoupdate.views.RecyclerView.ItemClickSupport;
 
-public class MainActivity extends AppCompatActivity implements iAsyncObj {
+public class MainActivity extends AppCompatActivity implements iAsyncObj, SwipeRefreshLayout.OnRefreshListener {
 
     FloatingActionButton _btnAdd;
     private RecyclerView recyclerViewAval;
@@ -36,13 +38,21 @@ public class MainActivity extends AppCompatActivity implements iAsyncObj {
     private int _posicao;
     private ProgressDialog progress;
     private int contReq=0, contReqRet=0;
+    private Toolbar toolbar;
+    private SwipeRefreshLayout swipeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        new CotacaoHelper().buscaBtc(this);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("CriptoUpdate");
+        setSupportActionBar(toolbar);
+        new CotacaoHelper().atualizaMoedas(this);
         new MainActivityHelper().verificaService(this);
+
+        swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
+        swipeLayout.setOnRefreshListener(this);
 
         _btnAdd = (FloatingActionButton) findViewById(R.id.cotacoes_add);
         recyclerViewAval = (RecyclerView) findViewById(R.id.recycler_lista_cotacoes);
@@ -59,14 +69,18 @@ public class MainActivity extends AppCompatActivity implements iAsyncObj {
         ItemClickSupport.addTo(recyclerViewAval).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                CotacaoCadastro aval = avals.get(position);
-                //Log.i("diego", "" + position);
-                Intent intentResposta = new Intent(MainActivity.this, CotacaoCadastroActivity.class);
-                Bundle bundle = new Bundle();
-                //Log.i("diego", "veic: " + aval.getVeiculo().getPlaca());
-                bundle.putSerializable(getString(R.string.param_id), aval.getId());
-                intentResposta.putExtras(bundle);
-                startActivity(intentResposta);
+                CotacaoCadastro cot = avals.get(position);
+
+                try {
+                    Intent intentResposta = new Intent(MainActivity.this, CotacaoCadastroActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable(getString(R.string.param_id), cot.getId());
+                    intentResposta.putExtras(bundle);
+                    startActivity(intentResposta);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    processarCarregamento();
+                }
             }
         });
 
@@ -83,12 +97,10 @@ public class MainActivity extends AppCompatActivity implements iAsyncObj {
             @Override
             public void onClick(View v) {
                 Intent intentResposta = new Intent(MainActivity.this, CotacaoCadastroActivity.class);
+                //Intent intentResposta = new Intent(MainActivity.this, PreferenceConfigCot.class);
                 startActivity(intentResposta);
             }
         });
-
-
-
         processarCarregamento();
         //carregaLista();
     }
@@ -147,13 +159,22 @@ public class MainActivity extends AppCompatActivity implements iAsyncObj {
             contReqRet++;
             new Notificacao().exibeCotacao(this, cot);
             CotacaoCadastro cad = new CotacaoRepositorio().selectByMoeda(cot.getMoedaEnum());
-            new CotacaoRepositorio().updateValor(cad.getId(), Double.parseDouble(cot.getTicker().getSell()));
-            if(contReq == contReqRet){
-                if(progress!=null && progress.isShowing()){
+            if (cad != null) {
+                new CotacaoRepositorio().updateValor(cad.getId(), Double.parseDouble(cot.getTicker().getSell()));
+                if (contReq == contReqRet) {
+                    if (progress != null && progress.isShowing()) {
+                        carregaLista();
+                        progress.dismiss();
+                        contReq = 0;
+                        contReqRet = 0;
+                    }
+                }
+            } else {
+                if (progress != null && progress.isShowing()) {
                     carregaLista();
                     progress.dismiss();
-                    contReq =0;
-                    contReqRet=0;
+                    contReq = 0;
+                    contReqRet = 0;
                 }
             }
         }
@@ -164,5 +185,12 @@ public class MainActivity extends AppCompatActivity implements iAsyncObj {
         super.onResume();
         if(contReq == 0)
             processarCarregamento();
+    }
+
+    @Override
+    public void onRefresh() {
+        swipeLayout.setRefreshing(true);
+        processarCarregamento();
+        swipeLayout.setRefreshing(false);
     }
 }

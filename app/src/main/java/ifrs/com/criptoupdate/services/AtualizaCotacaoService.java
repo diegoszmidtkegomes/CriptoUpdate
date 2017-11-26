@@ -4,12 +4,7 @@ import android.app.job.JobParameters;
 import android.app.job.JobService;
 import android.util.Log;
 
-import java.util.List;
-
-import ifrs.com.criptoupdate.data.CotacaoRepositorio;
 import ifrs.com.criptoupdate.helpers.CotacaoHelper;
-import ifrs.com.criptoupdate.model.CotacaoCadastro;
-import ifrs.com.criptoupdate.model.Moeda;
 
 
 /**
@@ -21,7 +16,7 @@ public class AtualizaCotacaoService extends JobService {
     public boolean onStartJob(JobParameters jobParameters) {
         Log.e("diego", "no service");
         try {
-            atualizaMoedas();
+            new CotacaoHelper().atualizaMoedas(getApplicationContext());
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -30,7 +25,7 @@ public class AtualizaCotacaoService extends JobService {
 
     }
 
-    private void atualizaMoedas() {
+    /*private void atualizaMoedas() {
         List<CotacaoCadastro> lista = new CotacaoRepositorio().selectTodosAtivos();
         for (CotacaoCadastro cot: lista
                 ) {
@@ -45,7 +40,7 @@ public class AtualizaCotacaoService extends JobService {
             }
         }
 
-    }
+    }*/
 
     @Override
     public boolean onStopJob(JobParameters jobParameters) {

@@ -23,7 +23,8 @@ public class MainActivityHelper {
 
         ComponentName serviceName = new ComponentName(activity, AtualizaCotacaoService.class);
         JobInfo jobInfo = new JobInfo.Builder(JOB_ID, serviceName)
-                .setPeriodic(60000)
+                //.setPeriodic(120000)
+                .setPeriodic(600000)
                 .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
                 //.setRequiresDeviceIdle(true)
                 .build();

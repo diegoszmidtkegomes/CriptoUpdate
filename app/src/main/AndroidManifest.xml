@@ -6,13 +6,13 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".app.CriptoUpdateApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:name=".app.CriptoUpdateApp"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".views.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.CotacaoCadastroActivity">
+        <activity
+            android:name=".views.CotacaoCadastroActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".views.MainActivity" />
@@ -31,6 +33,10 @@
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
+        <activity android:name=".views.PreferenceConfigCot"></activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="5383c73a049a5673aba0e3564ccbedc6583365f1" />
     </application>
 
 </manifest>

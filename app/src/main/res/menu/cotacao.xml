@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/cotacao_action_finalizar"
+        android:icon="@drawable/ic_confirmar"
+        android:title="Finalizar"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/cotacao_action_deletar"
+        android:icon="@drawable/ic_delete"
+        android:title="Finalizar"
+        app:showAsAction="always" />
+
+</menu>

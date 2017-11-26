@@ -2,6 +2,8 @@ package ifrs.com.criptoupdate.app;
 
 import android.text.TextUtils;
 
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.Credentials;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -46,7 +48,9 @@ public class RestClient {
 
             if (!httpClient.interceptors().contains(interceptor)) {
                 httpClient.addInterceptor(interceptor);
-
+                httpClient.connectTimeout(10, TimeUnit.SECONDS)
+                        .writeTimeout(10, TimeUnit.SECONDS)
+                        .readTimeout(20, TimeUnit.SECONDS);
                 builder.client(httpClient.build());
                 retrofit = builder.build();
             }

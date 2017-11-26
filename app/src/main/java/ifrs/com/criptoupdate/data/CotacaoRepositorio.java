@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ifrs.com.criptoupdate.model.CotacaoCadastro;
-import ifrs.com.criptoupdate.model.Moeda;
 import io.realm.Realm;
 import io.realm.RealmResults;
-import io.realm.Sort;
 
 /**
  * Created by diego on 07/11/2017.
@@ -31,6 +29,17 @@ public class CotacaoRepositorio {
         realm.commitTransaction();
     }
 
+    public void updateToken(long id, String token) {
+        CotacaoCadastro s = selectById(id);
+        if (s != null) {
+            Realm realm = Realm.getDefaultInstance();
+            realm.beginTransaction();
+            s.setToken(token);
+            realm.copyToRealmOrUpdate(s);
+            realm.commitTransaction();
+        }
+    }
+
 
     public List<CotacaoCadastro> selectTodosAtivos() {
         Realm realm = Realm.getDefaultInstance();
@@ -43,7 +52,7 @@ public class CotacaoRepositorio {
         return questionarios;
     }
 
-    public void salvar(long id, int moeda, boolean ativo){
+    public long salvar(long id, int moeda, boolean ativo, int percent, String email) {
         Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
         CotacaoCadastro s = new CotacaoCadastro();
@@ -58,18 +67,23 @@ public class CotacaoRepositorio {
             }
         }
         s.setMoeda(moeda);
+        s.setEmail(email);
+        s.setPercentual(percent);
         s.setValorVenda(0);
         s.setAtivo(ativo);
         realm.copyToRealmOrUpdate(s);
         realm.commitTransaction();
+        return s.getId();
     }
 
     public void deletar(long id) {
         Realm realm = Realm.getDefaultInstance();
         CotacaoCadastro c = selectById(id);
-        realm.beginTransaction();
-        c.deleteFromRealm();
-        realm.commitTransaction();
+        if (c != null) {
+            realm.beginTransaction();
+            c.deleteFromRealm();
+            realm.commitTransaction();
+        }
     }
 
     public CotacaoCadastro selectById(long id){

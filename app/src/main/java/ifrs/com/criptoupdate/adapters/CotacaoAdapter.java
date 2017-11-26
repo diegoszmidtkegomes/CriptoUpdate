@@ -1,7 +1,6 @@
 package ifrs.com.criptoupdate.adapters;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
+import java.text.DecimalFormat;
 import java.util.List;
 
 import ifrs.com.criptoupdate.R;
@@ -26,9 +25,9 @@ import ifrs.com.criptoupdate.model.Moeda;
 public class CotacaoAdapter extends RecyclerView.Adapter<CotacaoAdapter.ViewHolder> {
 
     /**
-     * Lista de _avaliacoes recebida por parâmetro
+     * Lista de _cotacoes recebida por parâmetro
      */
-    private List<CotacaoCadastro> _avaliacoes;
+    private List<CotacaoCadastro> _cotacoes;
     /**
      * Fonte do FontAwesome
      */
@@ -38,10 +37,10 @@ public class CotacaoAdapter extends RecyclerView.Adapter<CotacaoAdapter.ViewHold
     /**
      * Construtor da classe
      *
-     * @param _avaliacoes the avaliacoes
+     * @param _cotacoes the avaliacoes
      */
-    public CotacaoAdapter(List<CotacaoCadastro> _avaliacoes) {
-        this._avaliacoes = _avaliacoes;
+    public CotacaoAdapter(List<CotacaoCadastro> _cotacoes) {
+        this._cotacoes = _cotacoes;
     }
 
     /**
@@ -72,15 +71,16 @@ public class CotacaoAdapter extends RecyclerView.Adapter<CotacaoAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        holder.tvTitulo.setText(_avaliacoes.get(position).getMoedaEnum().toString());
-        holder.tvDescricao.setText(String.valueOf(_avaliacoes.get(position).getValorVenda()));
-        if(_avaliacoes.get(position).getMoedaEnum().equals(Moeda.BITCOIN)){
+        holder.tvTitulo.setText(_cotacoes.get(position).getMoedaEnum().toString());
+
+        DecimalFormat df = new DecimalFormat("#.00");
+        holder.tvDescricao.setText(String.valueOf("Preço: " + df.format(_cotacoes.get(position).getValorVenda()) + " R$"));
+        holder.tvAlarme.setText("Alarmes: +- " + String.valueOf(_cotacoes.get(position).getPercentual()) + "%");
+        if (_cotacoes.get(position).getMoedaEnum().equals(Moeda.BITCOIN)) {
             holder.tvImagem.setImageDrawable(view.getResources().getDrawable(R.drawable.bitcoin_icon));
-        }
-        else if(_avaliacoes.get(position).getMoedaEnum().equals(Moeda.LITECOIN)){
+        } else if (_cotacoes.get(position).getMoedaEnum().equals(Moeda.LITECOIN)) {
             holder.tvImagem.setImageDrawable(view.getResources().getDrawable(R.drawable.litecoin_icon));
-        }
-        else if(_avaliacoes.get(position).getMoedaEnum().equals(Moeda.BCASH)){
+        } else if (_cotacoes.get(position).getMoedaEnum().equals(Moeda.BCASH)) {
             holder.tvImagem.setImageDrawable(view.getResources().getDrawable(R.drawable.btc_cash_icon));
         }
     }
@@ -93,7 +93,7 @@ public class CotacaoAdapter extends RecyclerView.Adapter<CotacaoAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return _avaliacoes.size();
+        return _cotacoes.size();
     }
 
     /**
@@ -113,6 +113,8 @@ public class CotacaoAdapter extends RecyclerView.Adapter<CotacaoAdapter.ViewHold
          */
         public TextView tvDescricao;
 
+        public TextView tvAlarme;
+
         /**
          * Construtor da classe
          *
@@ -120,9 +122,10 @@ public class CotacaoAdapter extends RecyclerView.Adapter<CotacaoAdapter.ViewHold
          */
         public ViewHolder(View v) {
             super(v);
-            tvTitulo = (TextView) v.findViewById(R.id.list_checklist_pend_titulo);
-            tvDescricao = (TextView) v.findViewById(R.id.list_checklist_pend_desc);
-            tvImagem = (ImageView) v.findViewById(R.id.list_checklist_pend_imagem);
+            tvTitulo = (TextView) v.findViewById(R.id.list_cot_moeda);
+            tvDescricao = (TextView) v.findViewById(R.id.list_cot_valor);
+            tvAlarme = (TextView) v.findViewById(R.id.list_cot_alarme);
+            tvImagem = (ImageView) v.findViewById(R.id.list_cot_imagem);
         }
     }
 }

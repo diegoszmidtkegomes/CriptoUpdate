@@ -25,11 +25,11 @@ public class Notificacao {
         NotificationManager notificationManager = (NotificationManager)
                 act.getSystemService(NOTIFICATION_SERVICE);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(act);
-        builder.setSmallIcon(android.R.drawable.ic_dialog_alert);
+        builder.setSmallIcon(R.drawable.ic_arrow_up_black);
         Intent intent = new Intent(act , MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(act, 0, intent, 0);
         builder.setContentIntent(pendingIntent);
-        builder.setLargeIcon(BitmapFactory.decodeResource(act.getResources(), R.mipmap.ic_launcher));
+        builder.setLargeIcon(BitmapFactory.decodeResource(act.getResources(), R.drawable.ic_arrow_up_black));
 
         if(cot.getMoeda().equals(Moeda.BITCOIN)){
             builder.setContentTitle("BTC: " + String.format("%.2f", Double.parseDouble(cot.getTicker().getSell())));
@@ -54,7 +54,7 @@ public class Notificacao {
     public void atualizaCotacao(Context context, Cotacao cot){
         NotificationManager mNotificationManager = (NotificationManager)  context.getSystemService(Context.NOTIFICATION_SERVICE);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-        builder.setSmallIcon(android.R.drawable.ic_dialog_alert);
+        builder.setSmallIcon(R.drawable.ic_arrow_up_black);
         Intent intent = new Intent(context , MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
         builder.setContentIntent(pendingIntent);

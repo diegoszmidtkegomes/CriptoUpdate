@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_checklist"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
-
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -17,25 +15,40 @@
         android:focusableInTouchMode="true"
         android:orientation="vertical">
 
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+        </android.support.design.widget.AppBarLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:layout_marginTop="15dp"
-                android:textSize="20sp"
-                android:layout_marginStart="20dp"
                 android:id="@+id/act_cot_cad_ativolabel"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="Ativo" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:text="Ativo"
+                android:textSize="20sp" />
 
             <ToggleButton
-                android:layout_marginStart="100dp"
                 android:id="@+id/act_cot_cad_ativo"
                 android:layout_width="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="8dp" />
 
         </RelativeLayout>
 
@@ -46,36 +59,88 @@
             android:weightSum="2">
 
             <TextView
-                android:layout_marginTop="15dp"
-                android:textSize="18sp"
-                android:layout_weight="1"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:layout_marginStart="15dp"
-                android:text="Moeda" />
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
+                android:text="Moeda"
+                android:textSize="18sp" />
 
             <Spinner
                 android:id="@+id/act_cot_cad_moeda"
-                android:layout_marginTop="50dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                 />
+                android:layout_marginTop="50dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
+                android:text="Percentual variação"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/act_cot_cad_percent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:hint="Valor"
+                android:inputType="number" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
+                android:text="Email"
+                android:textSize="18sp" />
+
+
+            <EditText
+                android:id="@+id/act_cot_cad_email"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="15dp"
+                android:hint="E-Mail"
+                android:inputType="textWebEmailAddress" />
 
         </LinearLayout>
 
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/cadastro_cotacao_btnsalvar"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="30dp"
-        android:background="@color/colorPrimary"
-        android:text="Salvar"
-        android:textColor="@color/white" />
+        <!--<android.support.v7.widget.AppCompatButton
+            android:id="@+id/cadastro_cotacao_btnsalvar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="30dp"
+            android:background="@color/colorPrimary"
+            android:text="Salvar"
+            android:textColor="@color/white" />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/cadastro_cotacao_btndel"
@@ -87,7 +152,7 @@
             android:layout_marginTop="24dp"
             android:background="@color/colorPrimary"
             android:text="Deletar"
-            android:textColor="@color/white" />
+            android:textColor="@color/white" />-->
 
     </LinearLayout>
 

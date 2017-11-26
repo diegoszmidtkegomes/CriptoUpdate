@@ -10,14 +10,47 @@ import io.realm.annotations.RealmClass;
 @RealmClass
 public class CotacaoCadastro extends RealmObject {
 
-    public CotacaoCadastro() {
-    }
-
     @PrimaryKey
     private long id;
     private boolean ativo;
     private int moeda;
     private double valorVenda;
+    private int percentual;
+    private String email;
+    private String token;
+
+    public CotacaoCadastro() {
+    }
+
+    public CotacaoCadastro(long id, boolean ativo, int moeda) {
+        this.id = id;
+        this.ativo = ativo;
+        this.moeda = moeda;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getPercentual() {
+        return percentual;
+    }
+
+    public void setPercentual(int percentual) {
+        this.percentual = percentual;
+    }
 
     public double getValorVenda() {
         return valorVenda;
@@ -35,12 +68,6 @@ public class CotacaoCadastro extends RealmObject {
         }
         else
             return Moeda.BCASH;
-    }
-
-    public CotacaoCadastro(long id, boolean ativo, int moeda) {
-        this.id = id;
-        this.ativo = ativo;
-        this.moeda = moeda;
     }
 
     public long getId() {
