@@ -47,4 +47,5 @@ public interface CotacaoService {
                                     @Header("x-api-token") String apiToken,
                                     @Body Variacao variacao);
 
+
 }

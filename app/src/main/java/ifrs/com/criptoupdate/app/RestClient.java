@@ -15,7 +15,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RestClient {
 
-    public static final String BASE_URL = "https://cryptomarketmonitor-gabdevilshunter.c9users.io/";
+    //public static final String BASE_URL = "https://cryptomarketmonitor-gabdevilshunter.c9users.io/";
+    public static final String BASE_URL = "https://cryptomarketmonitor.herokuapp.com/";
     //public static final String BASE_URL = "http://192.168.0.176:8080/servmot/app/";
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 

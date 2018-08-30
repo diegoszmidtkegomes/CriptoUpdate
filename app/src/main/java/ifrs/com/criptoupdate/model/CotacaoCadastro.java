@@ -18,6 +18,15 @@ public class CotacaoCadastro extends RealmObject {
     private int percentual;
     private String email;
     private String token;
+    private String urlSlack;
+
+    public String getUrlSlack() {
+        return urlSlack;
+    }
+
+    public void setUrlSlack(String urlSlack) {
+        this.urlSlack = urlSlack;
+    }
 
     public CotacaoCadastro() {
     }

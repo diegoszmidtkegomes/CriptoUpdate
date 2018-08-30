@@ -17,6 +17,7 @@ import ifrs.com.criptoupdate.model.response.EmailEnviado;
 import ifrs.com.criptoupdate.model.response.Variacao;
 import ifrs.com.criptoupdate.services.CotacaoService;
 import ifrs.com.criptoupdate.util.Notificacao;
+import ifrs.com.criptoupdate.views.CotacaoCadastroActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -265,5 +266,10 @@ public class CotacaoHelper implements iAsyncObj {
             }
 
         });
+    }
+
+    public void cadastrarSlack(CotacaoCadastroActivity cotacaoCadastroActivity, String s) {
+        CotacaoService cotacaoService = RestClient.createService(CotacaoService.class, "admin", "123");
+
     }
 }

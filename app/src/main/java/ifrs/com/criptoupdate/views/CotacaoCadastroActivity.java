@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,6 +31,7 @@ public class CotacaoCadastroActivity extends AppCompatActivity implements iAsync
     private CotacaoCadastroActivity view;
     private EditText percent;
     private EditText email;
+    private EditText urlSlack;
     private Button _btnDel;
     private long idCot = 0;
     private CotacaoCadastro cotacaoCadastro = null;
@@ -53,6 +55,7 @@ public class CotacaoCadastroActivity extends AppCompatActivity implements iAsync
         btnAtivo = (ToggleButton) findViewById(R.id.act_cot_cad_ativo); // initiate a toggle button
         percent = (EditText) findViewById(R.id.act_cot_cad_percent);
         email = (EditText) findViewById(R.id.act_cot_cad_email);
+        urlSlack = (EditText) findViewById(R.id.act_cot_cad_slack);
         spinner = (Spinner) findViewById(R.id.act_cot_cad_moeda);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.moedas, android.R.layout.simple_spinner_item);
@@ -178,6 +181,8 @@ public class CotacaoCadastroActivity extends AppCompatActivity implements iAsync
         if (obj instanceof Email) {
             Email e = (Email) obj;
             new CotacaoRepositorio().updateToken(idCot, e.getUser().getToken());
+            Log.e("slack", urlSlack.getText().toString());
+            new CotacaoHelper().cadastrarSlack(CotacaoCadastroActivity.this, urlSlack.getText().toString());
         }
     }
 }
