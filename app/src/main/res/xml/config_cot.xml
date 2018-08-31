@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <PreferenceCategory android:title="Moeda">
+        <SwitchPreference
+            android:id="@+id/act_cot_cad_ativo"
+            android:key="config_cot_ativo"
+            android:title="Ativo" />
+
+        <ListPreference
+            android:dialogTitle="Moedas"
+            android:entries="@array/moedas"
+            android:entryValues="@array/valores"
+            android:key="meodas_preference"
+            android:title="Moedas" />
+
+    </PreferenceCategory>
+
+
+    <PreferenceCategory android:title="Alarme">
+
+        <SwitchPreference
+            android:id="@+id/act_cot_cad_alarme"
+            android:key="config_cot_alarme"
+            android:title="Ativo" />
+
+        <ListPreference
+            android:dialogTitle="Valores"
+            android:entries="@array/valores"
+            android:entryValues="@array/valores"
+            android:key="list_preference"
+            android:summary="Defina o valor de alteração em porcentagem "
+            android:title="Valores" />
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
